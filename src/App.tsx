@@ -3,7 +3,7 @@ import React from 'react';
 const App: React.FC = () => {
   return (
     <div>
-      <h1>Hello, React TypeScript!</h1>
+      <h1>LookBook</h1>
     </div>
   );
 };
