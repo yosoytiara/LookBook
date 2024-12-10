@@ -1,0 +1,18 @@
+{
+  // "compilerOptions": {
+  //   "target": "es6", // Use a modern target, like es6 or esnext
+  //   "module": "esnext", // ESNext for module resolution
+  //   "jsx": "react-jsx", // JSX support for React 17+
+  //   "strict": true, // Enable strict type checking
+  //   "esModuleInterop": true,
+  //   "skipLibCheck": true, // Skip checking of declaration files for faster builds
+  //   "forceConsistentCasingInFileNames": true
+  // },
+  "compilerOptions": {
+    "jsx": "react", // eliminates the need to import 'react' in every file
+    "module": "commonjs",
+    "esModuleInterop": true, // provides compatibility
+    "noImplicitAny": true //disallow variables with an implicit type of any
+  },
+  "include": ["src", "webpack.config.js"]
+}
