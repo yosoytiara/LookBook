@@ -11,6 +11,7 @@
   "compilerOptions": {
     "jsx": "react", // eliminates the need to import 'react' in every file
     "module": "commonjs",
+    "strict": true,
     "esModuleInterop": true, // provides compatibility
     "noImplicitAny": true //disallow variables with an implicit type of any
   },
