@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-
-// import { ClothingItem } from '../types';
-
-// interface State {
-//   item: string;
-//   category: string;
-//   color: string;
-// }
+import axios from 'axios';
 
 export default function InputBox() {
   const [item, setItem] = useState({
@@ -24,19 +17,29 @@ export default function InputBox() {
       (submittedItem) => submittedItem.category === category
     );
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(item);
-    setSubmittedItems((prevItems) => [
-      ...prevItems,
-      {
-        name: item.name,
-        category: item.category,
-        color: item.color,
-        image: item.image,
-      },
-    ]);
+    console.log('Form submitted');
+    try {
+      // const response = await axios.post('http://localhost:5000/api/form', item);
+      // console.log('Data saved:', response.data);
+      console.log(item);
+      setSubmittedItems((prevItems) => [
+        ...prevItems,
+        {
+          name: item.name,
+          category: item.category,
+          color: item.color,
+          image: item.image,
+        },
+        // response.data,
+      ]);
+      console.log(submittedItems);
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
   };
+
   return (
     <div className='InputBox'>
       <form className='closetform' onSubmit={handleSubmit}>
@@ -116,6 +119,7 @@ export default function InputBox() {
       </form>
       <div>
         <h2> Closet:</h2>
+        {/* //Display items below */}
         <h4>Tops</h4>
         <div className='closet'>
           {filterItemsByCategory('tops').map((submittedItem, index) => (
