@@ -19,6 +19,11 @@ export default function InputBox() {
     { name: string; category: string; color: string; image: string }[]
   >([]);
 
+  const filterItemsByCategory = (category: string) => {
+    return submittedItems.filter(
+      (submittedItem) => submittedItem.category === category
+    );
+  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(item);
@@ -33,7 +38,7 @@ export default function InputBox() {
     ]);
   };
   return (
-    <div>
+    <div className='InputBox'>
       <form className='closetform' onSubmit={handleSubmit}>
         <h2> Enter your wardrobe</h2>
         <div>
@@ -89,45 +94,95 @@ export default function InputBox() {
               }}
             />
           </label>
-          <label>
-            Image:
-            <input
-              name='image'
-              placeholder='enter image url'
-              id='image'
-              value={item.image}
-              onChange={(e) => {
-                setItem({
-                  ...item,
-                  image: e.target.value,
-                });
-              }}
-            />
-          </label>
+          <div>
+            <label>
+              Image:
+              <input
+                name='image'
+                placeholder='enter image url'
+                id='image'
+                value={item.image}
+                onChange={(e) => {
+                  setItem({
+                    ...item,
+                    image: e.target.value,
+                  });
+                }}
+              />
+            </label>
+          </div>
         </div>
         <button type='submit'>Add item</button>
       </form>
       <div>
-        {submittedItems.map((submittedItem, index) => (
-          <p key={index}>
-            {submittedItem.name} ({submittedItem.category}){' '}
-            <span
-              style={{
-                backgroundColor: submittedItem.color,
-                color: submittedItem.color,
-                padding: '0.2em',
-              }}
-            >
-              {submittedItem.color}
-              <img
-                src={submittedItem.image}
-                style={{
-                  height: 300,
-                }}
-              ></img>
-            </span>
-          </p>
-        ))}
+        <h2> Closet:</h2>
+        <h4>Tops</h4>
+        <div className='closet'>
+          {filterItemsByCategory('tops').map((submittedItem, index) => (
+            <ul key={index}>
+              <li>
+                {' '}
+                <img
+                  src={submittedItem.image}
+                  style={{
+                    height: 250,
+                  }}
+                ></img>
+              </li>
+            </ul>
+          ))}
+        </div>
+        <h4>Bottoms</h4>
+        <div className='closet'>
+          {filterItemsByCategory('bottoms').map((submittedItem, index) => (
+            <ul key={index}>
+              <li>
+                {' '}
+                <img
+                  src={submittedItem.image}
+                  alt={submittedItem.name}
+                  style={{
+                    height: 250,
+                  }}
+                ></img>
+              </li>
+            </ul>
+          ))}
+        </div>
+        <h4>Shoes</h4>
+        <div className='closet'>
+          {filterItemsByCategory('shoes').map((submittedItem, index) => (
+            <ul key={index}>
+              <li>
+                {' '}
+                <img
+                  src={submittedItem.image}
+                  alt={submittedItem.name}
+                  style={{
+                    height: 250,
+                  }}
+                ></img>
+              </li>
+            </ul>
+          ))}
+        </div>
+        <h4>Outerwear</h4>
+        <div className='closet'>
+          {filterItemsByCategory('outerwear').map((submittedItem, index) => (
+            <ul key={index}>
+              <li>
+                {' '}
+                <img
+                  src={submittedItem.image}
+                  alt={submittedItem.name}
+                  style={{
+                    height: 250,
+                  }}
+                ></img>
+              </li>
+            </ul>
+          ))}
+        </div>
       </div>
     </div>
   );
