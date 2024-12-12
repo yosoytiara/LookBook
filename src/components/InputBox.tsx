@@ -13,9 +13,10 @@ export default function InputBox() {
     name: '',
     category: '',
     color: '',
+    image: '',
   });
   const [submittedItems, setSubmittedItems] = useState<
-    { name: string; category: string; color: string }[]
+    { name: string; category: string; color: string; image: string }[]
   >([]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +24,12 @@ export default function InputBox() {
     console.log(item);
     setSubmittedItems((prevItems) => [
       ...prevItems,
-      { name: item.name, category: item.category, color: item.color },
+      {
+        name: item.name,
+        category: item.category,
+        color: item.color,
+        image: item.image,
+      },
     ]);
   };
   return (
@@ -83,6 +89,21 @@ export default function InputBox() {
               }}
             />
           </label>
+          <label>
+            Image:
+            <input
+              name='image'
+              placeholder='enter image url'
+              id='image'
+              value={item.image}
+              onChange={(e) => {
+                setItem({
+                  ...item,
+                  image: e.target.value,
+                });
+              }}
+            />
+          </label>
         </div>
         <button type='submit'>Add item</button>
       </form>
@@ -98,6 +119,12 @@ export default function InputBox() {
               }}
             >
               {submittedItem.color}
+              <img
+                src={submittedItem.image}
+                style={{
+                  height: 300,
+                }}
+              ></img>
             </span>
           </p>
         ))}
