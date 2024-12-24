@@ -12,6 +12,8 @@ export default function InputBox() {
     { name: string; category: string; color: string; image: string }[]
   >([]);
 
+  
+
   const filterItemsByCategory = (category: string) => {
     return submittedItems.filter(
       (submittedItem) => submittedItem.category === category
