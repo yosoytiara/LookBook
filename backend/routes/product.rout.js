@@ -1,6 +1,5 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import Product from '../models/products.model.js';
+
 import {
   getProducts,
   createProduct,
@@ -17,3 +16,5 @@ router.put('/:id', updateProduct);
 router.post('/', createProduct);
 
 router.delete('/:id', deleteProduct);
+
+export default router;
