@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "dev": "npm backend/server.js"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yosoytiara/LookBook.git"
@@ -25,6 +27,7 @@
     "@types/react-dom": "^19.0.2",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongodb": "^6.12.0",
     "mongoose": "^8.8.4",
