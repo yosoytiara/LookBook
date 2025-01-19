@@ -1,45 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function InputBox() {
-  const [item, setItem] = useState({
+  const [submittedItems, setSubmittedItems] = useState<
+    {
+      name: string;
+      category: string;
+      color: string;
+      image: string;
+    }[]
+  >([]);
+
+  const [newProduct, setNewProduct] = useState({
     name: '',
     category: '',
     color: '',
     image: '',
   });
-  const [submittedItems, setSubmittedItems] = useState<
-    { name: string; category: string; color: string; image: string }[]
-  >([]);
 
-  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3030/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
+      });
+      const data = await response.json();
+      setSubmittedItems((prevItems) => [...prevItems, data.data]);
+      setNewProduct({
+        name: '',
+        category: '',
+        color: '',
+        image: '',
+      });
+
+      console.log('Form data submitted:', data);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
+
+  const handleDelete = async (id:string) => {
+    try{
+      const response = await fetch(`http://localhost:3030/products/{$id}`),{
+         method: 'DELETE',
+    });
+
+    if(!response.ok){
+      throw new Error('Failed to delete item');
+    }
+
+  }
+    }catch(error){
+
+    }
+  };
 
   const filterItemsByCategory = (category: string) => {
     return submittedItems.filter(
       (submittedItem) => submittedItem.category === category
     );
-  };
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log('Form submitted');
-    try {
-      // const response = await axios.post('http://localhost:5000/api/form', item);
-      // console.log('Data saved:', response.data);
-      console.log(item);
-      setSubmittedItems((prevItems) => [
-        ...prevItems,
-        {
-          name: item.name,
-          category: item.category,
-          color: item.color,
-          image: item.image,
-        },
-        // response.data,
-      ]);
-      console.log(submittedItems);
-    } catch (error) {
-      console.error('Error saving data:', error);
-    }
   };
 
   return (
@@ -52,10 +80,10 @@ export default function InputBox() {
             <input
               name='item'
               placeholder='ex:Zara fur coat'
-              value={item.name}
+              value={newProduct.name}
               onChange={(e) => {
-                setItem({
-                  ...item,
+                setNewProduct({
+                  ...newProduct,
                   name: e.target.value,
                 });
               }}
@@ -68,10 +96,10 @@ export default function InputBox() {
             <select
               id='category'
               name='category'
-              value={item.category}
+              value={newProduct.category}
               onChange={(e) => {
-                setItem({
-                  ...item,
+                setNewProduct({
+                  ...newProduct,
                   category: e.target.value,
                 });
               }}
@@ -90,10 +118,10 @@ export default function InputBox() {
               name='color'
               type='color'
               id='color'
-              value={item.color}
+              value={newProduct.color}
               onChange={(e) => {
-                setItem({
-                  ...item,
+                setNewProduct({
+                  ...newProduct,
                   color: e.target.value,
                 });
               }}
@@ -106,10 +134,10 @@ export default function InputBox() {
                 name='image'
                 placeholder='enter image url'
                 id='image'
-                value={item.image}
+                value={newProduct.image}
                 onChange={(e) => {
-                  setItem({
-                    ...item,
+                  setNewProduct({
+                    ...newProduct,
                     image: e.target.value,
                   });
                 }}
@@ -122,76 +150,31 @@ export default function InputBox() {
       <div>
         <h2> Closet:</h2>
         {/* //Display items below */}
-        <h4>Tops</h4>
-        <div className='closet'>
-          {filterItemsByCategory('tops').map((submittedItem, index) => (
-            <ul key={index}>
-              <li>
-                {' '}
-                <img
-                  src={submittedItem.image}
-                  style={{
-                    height: 250,
-                  }}
-                ></img>
-              </li>
-            </ul>
-          ))}
-        </div>
-        <h4>Bottoms</h4>
-        <div className='closet'>
-          {filterItemsByCategory('bottoms').map((submittedItem, index) => (
-            <ul key={index}>
-              <li>
-                {' '}
-                <img
-                  src={submittedItem.image}
-                  alt={submittedItem.name}
-                  style={{
-                    height: 250,
-                  }}
-                ></img>
-              </li>
-            </ul>
-          ))}
-        </div>
-        <h4>Shoes</h4>
-        <div className='closet'>
-          {filterItemsByCategory('shoes').map((submittedItem, index) => (
-            <ul key={index}>
-              <li>
-                {' '}
-                <img
-                  src={submittedItem.image}
-                  alt={submittedItem.name}
-                  style={{
-                    height: 250,
-                  }}
-                ></img>
-              </li>
-            </ul>
-          ))}
-        </div>
-        <h4>Outerwear</h4>
-        <div className='closet'>
-          {filterItemsByCategory('outerwear').map((submittedItem, index) => (
-            <ul key={index}>
-              <li>
-                {' '}
-                <img
-                  src={submittedItem.image}
-                  alt={submittedItem.name}
-                  style={{
-                    height: 250,
-                  }}
-                ></img>
-              </li>
-            </ul>
-          ))}
-        </div>
+        {['tops', 'bottoms', 'shoes', 'outerwear'].map((category) => (
+          <div key={category}>
+            <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+            <div className='closet'>
+              {filterItemsByCategory(category).map((submittedItem, index) => (
+                <ul key={index}>
+                  <li>
+                    <img
+                      src={submittedItem.image}
+                      alt={submittedItem.name}
+                      style={{
+                        height: 250,
+                      }}
+                    />
+                    <p>{submittedItem.name}</p>
+
+                    <button>Update</button>
+                    <button>Delete</button>
+                  </li>
+                </ul>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
-
-// export default InputBox;

@@ -1,26 +1,29 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
-  entry: './src/index.tsx', // Entry file is .tsx
+// Resolve __dirname with ES module
+const __dirname = new URL('.', import.meta.url).pathname;
+
+export default {
+  entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // Use path.resolve for better consistency
     filename: 'bundle.js',
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/, // Apply ts-loader for TypeScript files (.ts and .tsx)
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: 'ts-loader', // Use ts-loader to handle .tsx and .ts files
       },
       {
-        test: /\.jsx?$/, // For JS/JSX files, use Babel
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
       {
-        test: /\.css$/, // Target all CSS files
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'], // Apply these loaders in order
       },
     ],
@@ -35,7 +38,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: path.resolve(__dirname, 'public'), // Serve static files from 'public'
+    static: path.resolve(__dirname, 'public'), // Serve static files from the 'public' directory
     port: 3000,
     hot: true,
   },
