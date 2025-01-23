@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const __dirname = new URL('.', import.meta.url).pathname;
 
 export default {
-  entry: './src/index.tsx',
+  entry: './frontend/src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'), // Use path.resolve for better consistency
     filename: 'bundle.js',
@@ -33,7 +33,7 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './frontend/public/index.html',
       filename: 'index.html',
     }),
   ],
