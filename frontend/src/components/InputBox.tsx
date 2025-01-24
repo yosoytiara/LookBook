@@ -2,15 +2,7 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios';
 
 export default function InputBox() {
-  // const [submittedItems, setSubmittedItems] = useState<
-  //   {
-  //     _id: string;
-  //     name: string;
-  //     category: string;
-  //     color: string;
-  //     image: string;
-  //   }[]
-  // >([]);
+ 
   const [submittedItems, setSubmittedItems] = useState<any[]>([]);
 
   const [newProduct, setNewProduct] = useState({
@@ -90,11 +82,15 @@ export default function InputBox() {
   };
 
   const handleUpdate = async (event: React.FormEvent) => {
+    event.preventDefault();
+
     try {
-      await axios.put(
+      const response = await axios.put(
         `http://localhost:3030/products/${updatedProduct._id}`,
         updatedProduct
       );
+
+      console.log('Product updated successfully:', response.data);
       setSubmittedItems((prevItems) =>
         prevItems.map((item) =>
           item._id === updatedProduct._id
