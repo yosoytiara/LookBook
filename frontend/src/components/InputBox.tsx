@@ -2,15 +2,16 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios';
 
 export default function InputBox() {
-  const [submittedItems, setSubmittedItems] = useState<
-    {
-      _id: string;
-      name: string;
-      category: string;
-      color: string;
-      image: string;
-    }[]
-  >([]);
+  // const [submittedItems, setSubmittedItems] = useState<
+  //   {
+  //     _id: string;
+  //     name: string;
+  //     category: string;
+  //     color: string;
+  //     image: string;
+  //   }[]
+  // >([]);
+  const [submittedItems, setSubmittedItems] = useState<any[]>([]);
 
   const [newProduct, setNewProduct] = useState({
     name: '',
@@ -33,7 +34,9 @@ export default function InputBox() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:3030/products');
-        setSubmittedItems(response.data);
+        const data = response.data;
+        console.log(response.data);
+        setSubmittedItems(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -52,11 +55,15 @@ export default function InputBox() {
         body: JSON.stringify(newProduct),
       });
       const data = await response.json();
+
+      // Ensure submittedItems is an array before updating
       if (Array.isArray(submittedItems)) {
-        setSubmittedItems((prevItems) => [...prevItems, data.data]); // Add new item
+        setSubmittedItems((prevItems) => [...prevItems, data.data]); // Adding new item
       } else {
         console.error('submittedItems is not an array!');
+        setSubmittedItems([data.data]); // Initialize with the new item as the only element
       }
+
       setNewProduct({
         name: '',
         category: '',
@@ -104,28 +111,27 @@ export default function InputBox() {
         image: '',
       });
       console.log('Product updated successfully');
-
     } catch (error: any) {
       console.error('Error updating product:', error.message);
     }
   };
 
-   const handleEdit = (product: any) => {
-     setUpdatedProduct(product);
-     setIsEditing(true);
-   };
-
-  const filterItemsByCategory = (category: string) => {
-     if (!Array.isArray(submittedItems)) {
-       console.error('submittedItems is not an array');
-       return [];
-     }
-     return submittedItems.filter(
-       (submittedItem) => submittedItem.category === category
-     );
+  const handleEdit = (product: any) => {
+    setUpdatedProduct(product);
+    setIsEditing(true);
   };
 
- 
+  const filterItemsByCategory = (category: string) => {
+    console.log(submittedItems);
+    if (!Array.isArray(submittedItems)) {
+      console.error('submittedItems is not an array');
+      return [];
+    }
+    return submittedItems.filter(
+      (submittedItem) => submittedItem.category === category
+    );
+  };
+
   return (
     <div className='InputBox'>
       <form

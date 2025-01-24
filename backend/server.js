@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 // app.use(cors({ origin: 'http://localhost:3000' }));
 
-import productRoutes from './routes/product.rout.js';
+import productRoutes from './routes/product.route.js';
 dotenv.config();
 
 const PORT = process.env.PORT || 3030;
