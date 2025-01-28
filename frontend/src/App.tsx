@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import InputBox from './components/InputBox';
+import Generator from './pages/Generator';
 import './App.css';
-import Outfits from './components/Outfits';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1 id='lookbook'>LookBook</h1>
-      <InputBox></InputBox>
-      <Outfits />
-    </div>
+    <Router>
+      <div>
+        <h1 id='lookbook'>LookBook</h1>
+        <Routes>
+          <Route path='/' element={<InputBox />} />
+          <Route path='/outfits' element={<Generator />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

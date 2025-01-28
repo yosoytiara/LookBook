@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type OutfitItem = {
   name: string;
@@ -132,6 +133,9 @@ const Outfits: React.FC = () => {
   return (
     <div className='Outfits'>
       <h3>Outfit Recommendation based on your closet:</h3>
+      <button>
+        <Link to='/'> Back to Home</Link>
+      </button>
       <button type='submit' id='outfitsubmit' onClick={generateOutfit}>
         Generate a Outfit
       </button>

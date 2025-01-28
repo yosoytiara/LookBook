@@ -1,8 +1,8 @@
 import React, { useState, useEffect, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function InputBox() {
- 
   const [submittedItems, setSubmittedItems] = useState<any[]>([]);
 
   const [newProduct, setNewProduct] = useState({
@@ -21,6 +21,7 @@ export default function InputBox() {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,8 +30,10 @@ export default function InputBox() {
         const data = response.data;
         console.log(response.data);
         setSubmittedItems(Array.isArray(data) ? data : []);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching products:', error);
+        setLoading(false);
       }
     };
     fetchProducts();
@@ -215,39 +218,49 @@ export default function InputBox() {
           </div>
         </div>
         <button type='submit'>{isEditing ? 'Update item' : 'Add item'}</button>
+        <button id='closetButton'>
+          <a href='#closet'> View Closet </a>
+        </button>
+        <div>
+          <Link to='/outfits'> Generate a Outfit</Link>
+        </div>
       </form>
-      <div>
-        <h2> Closet:</h2>
-        {/* //Display items below */}
-        {['tops', 'bottoms', 'shoes', 'outerwear'].map((category) => (
-          <div key={category}>
-            <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
-            <div className='closet'>
-              {filterItemsByCategory(category).map((submittedItem, index) => (
-                <ul key={index}>
-                  <li>
-                    <img
-                      src={submittedItem.image}
-                      alt={submittedItem.name}
-                      style={{
-                        height: 250,
-                      }}
-                    />
-                    <p>{submittedItem.name}</p>
+      {loading ? (
+        <p>Loading your closet items...</p>
+      ) : (
+        <div>
+          <h2 id='closet'> Closet:</h2>
+          {/* //Display items below */}
+          {['tops', 'bottoms', 'shoes', 'outerwear'].map((category) => (
+            <div key={category}>
+              <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+              <div className='closet'>
+                {filterItemsByCategory(category).map((submittedItem, index) => (
+                  <ul key={index}>
+                    <li>
+                      <img
+                        src={submittedItem.image}
+                        alt={submittedItem.name}
+                        style={{
+                          height: 250,
+                        }}
+                      />
+                      <p>{submittedItem.name}</p>
 
-                    <button onClick={() => handleEdit(submittedItem)}>
-                      Edit
-                    </button>
-                    <button onClick={() => handleDelete(submittedItem._id)}>
-                      Delete
-                    </button>
-                  </li>
-                </ul>
-              ))}
+                      <button onClick={() => handleEdit(submittedItem)}>
+                        Edit
+                      </button>
+                      <button onClick={() => handleDelete(submittedItem._id)}>
+                        Delete
+                      </button>
+                    </li>
+                  </ul>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
