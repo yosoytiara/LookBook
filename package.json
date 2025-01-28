@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",
-    "dev": "npm backend/server.js",
-    "deploy": "gh-pages -d build"
+    "dev": "concurrently \"npm run start\" \"node backend/server.js\""
   },
   "type": "module",
   "repository": {
@@ -41,6 +40,7 @@
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
+    "concurrently": "^9.1.2",
     "css-loader": "^7.1.2",
     "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.3",
