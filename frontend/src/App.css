@@ -2,11 +2,43 @@
   background-color: rgb(255, 255, 255);
   font-family: Arial, Helvetica, sans-serif;
 }
-.closetform {
+
+/* Closet Form */
+.closetForm {
   text-align: center;
   padding: 60px;
   margin-bottom: 60px;
 }
+.closetForm button {
+  border-radius: 10px;
+  /* padding: 10px; */
+  margin-top: 10px;
+  width: 200px;
+  text-decoration: none;
+}
+
+.closetForm div {
+  margin-top: 10px;
+}
+
+.Outfits {
+  text-align: center;
+}
+
+.InputBox {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.closet {
+  border: 0.5px solid black;
+}
+h1 {
+  font-size: 65px;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+
 input {
   border-radius: 10px;
   padding: 6px 10px;
@@ -17,56 +49,19 @@ select {
   padding: 6px 10px;
 }
 
-.closetform button {
-  border-radius: 10px;
-  /* padding: 10px; */
-  margin-top: 10px;
-  width: 200px;
-  text-decoration: none;
-}
-
-.closetform div {
-  margin-top: 10px;
-}
-
-#lookbook {
-  font-size: 65px;
-  font-family: 'Orbitron', sans-serif;
-  text-align: center;
-  padding-top: 50px;
-}
-
-#color {
-  width: 80px;
-  height: 30px;
-}
-
-.Outfits {
-  text-align: center;
-}
-
 ul {
   display: inline-block;
   list-style: none;
 }
-
-.InputBox {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.closet {
-  border: 0.5px solid black;
-}
-
-/* CSS */
+/* button */
 button {
   align-items: center;
   appearance: none;
-  background-color: #fcfcfd;
+  background-color: #e19bc1;
   border-radius: 4px;
   border-width: 0;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #19191e 0 -3px 0 inset;
   box-sizing: border-box;
   color: #36395a;
   cursor: pointer;
@@ -87,33 +82,34 @@ button {
 }
 
 button:focus {
-  box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+  box-shadow: #e0c0cf 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
 }
 
 button:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #000000 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
 button:active {
   box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
-  text-decoration: none; 
-}
-a{
   text-decoration: none;
+}
+a {
+  text-decoration: none;
+  background-color: transparent;
 }
 a:visited {
   color: black;
   text-decoration: none;
 }
 a:hover {
-  color: darkblue; 
-  text-decoration:none; 
+  color: rgb(115, 115, 154);
+  text-decoration: none;
 }
 a:active {
-  color: red; 
-  text-decoration: none; 
+  color: rgb(9, 8, 8);
+  text-decoration: none;
 }

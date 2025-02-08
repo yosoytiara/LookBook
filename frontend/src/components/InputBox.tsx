@@ -8,7 +8,6 @@ export default function InputBox() {
   const [newProduct, setNewProduct] = useState({
     name: '',
     category: '',
-    color: '',
     image: '',
   });
 
@@ -16,7 +15,6 @@ export default function InputBox() {
     _id: '',
     name: '',
     category: '',
-    color: '',
     image: '',
   });
 
@@ -29,7 +27,7 @@ export default function InputBox() {
         const response = await axios.get('http://localhost:3030/products');
         const data = response.data;
         console.log(response.data);
-        setSubmittedItems(Array.isArray(data) ? data : []);
+        setSubmittedItems(Array.isArray(data.data) ? data.data : []);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -39,6 +37,7 @@ export default function InputBox() {
     fetchProducts();
   }, []);
 
+  //Submitting Form
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
@@ -62,7 +61,6 @@ export default function InputBox() {
       setNewProduct({
         name: '',
         category: '',
-        color: '',
         image: '',
       });
 
@@ -106,7 +104,6 @@ export default function InputBox() {
         _id: '',
         name: '',
         category: '',
-        color: '',
         image: '',
       });
       console.log('Product updated successfully');
@@ -134,7 +131,7 @@ export default function InputBox() {
   return (
     <div className='InputBox'>
       <form
-        className='closetform'
+        className='closetForm'
         onSubmit={isEditing ? handleUpdate : handleSubmit}
       >
         <h2> Enter your wardrobe</h2>
@@ -180,23 +177,6 @@ export default function InputBox() {
           </label>
         </div>
         <div>
-          <label>
-            Color:
-            <input
-              name='color'
-              type='color'
-              id='color'
-              value={isEditing ? updatedProduct.color : newProduct.color}
-              onChange={(e) => {
-                isEditing
-                  ? setUpdatedProduct({
-                      ...updatedProduct,
-                      color: e.target.value,
-                    })
-                  : setNewProduct({ ...newProduct, color: e.target.value });
-              }}
-            />
-          </label>
           <div>
             <label>
               Image:

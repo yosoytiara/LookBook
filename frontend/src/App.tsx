@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <h1 id='lookbook'>LookBook</h1>
+        <h1>LookBook</h1>
         <Routes>
           <Route path='/' element={<InputBox />} />
           <Route path='/outfits' element={<Generator />} />

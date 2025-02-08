@@ -136,7 +136,7 @@ const Outfits: React.FC = () => {
       <button>
         <Link to='/'> Back to Home</Link>
       </button>
-      <button type='submit' id='outfitsubmit' onClick={generateOutfit}>
+      <button type='submit' id='outfitSubmit' onClick={generateOutfit}>
         Generate a Outfit
       </button>
       <div className='closet'>
