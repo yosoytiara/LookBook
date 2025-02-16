@@ -1,9 +1,10 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { SubmittedItem } from '../types';
 
 export default function InputBox() {
-  const [submittedItems, setSubmittedItems] = useState<any[]>([]);
+  const [submittedItems, setSubmittedItems] = useState<SubmittedItem[]>([]);
 
   const [newProduct, setNewProduct] = useState({
     name: '',

@@ -2,7 +2,10 @@
 
 LookBook is a web application that allows users to save and visualize their wardrobe items in a database, and get outfit recommendations.
 
-![LookBook site](./frontend/assets/lookbook2.png)
+### Add Items, update and delete if necessary 👚
+![LookBook site](./frontend/assets/lookbook1.gif)
+### Outfit Recommendations 
+![LookBook site](./frontend/assets/lookbook2.gif)
 
 ## Technologies
 

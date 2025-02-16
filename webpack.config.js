@@ -1,35 +1,45 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-// Resolve __dirname with ES module
 const __dirname = new URL('.', import.meta.url).pathname;
 
 export default {
   entry: './frontend/src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'), // Use path.resolve for better consistency
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
   module: {
     rules: [
+      // Rule for TypeScript
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: 'ts-loader', // Use ts-loader to handle .tsx and .ts files
+        use: 'ts-loader',
       },
+      // Rule for JavaScript/JSX (using Babel)
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env', // JavaScript transformations
+              '@babel/preset-react', // React JSX transformation
+            ],
+          },
+        },
       },
+      // Rule for CSS files
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'], // Apply these loaders in order
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'], // Resolve .tsx, .ts, .js, .jsx extensions
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -38,8 +48,9 @@ export default {
     }),
   ],
   devServer: {
-    static: path.resolve(__dirname, 'public'), // Serve static files from the 'public' directory
+    static: path.resolve(__dirname, 'public'),
     port: 3000,
     hot: true,
   },
+  devtool: 'source-map', // Enable source maps
 };

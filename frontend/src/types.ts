@@ -5,3 +5,9 @@ export interface ClothingItem {
   image: '';
 }
 
+export interface SubmittedItem {
+  _id: string;
+  name: string;
+  category: string;
+  image: string;
+}

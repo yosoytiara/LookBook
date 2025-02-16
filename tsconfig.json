@@ -1,11 +1,19 @@
 {
-  
   "compilerOptions": {
-    "jsx": "react", // eliminates the need to import 'react' in every file
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true, // provides compatibility
-    "noImplicitAny": true //disallow variables with an implicit type of any
+    "target": "ESNext", // Set the target JavaScript version
+    "module": "ESNext", // Use ESNext modules
+    "lib": ["dom", "esnext"], // Include browser and ECMAScript libraries
+    "moduleResolution": "node", // Use Node-style module resolution
+    "strict": true, // Enable strict type checking
+    "esModuleInterop": true, // Enable compatibility with CommonJS modules
+    "skipLibCheck": true, // Skip checking of declaration files
+    "allowJs": true, // Allow JavaScript files to be included
+    "jsx": "react-jsx" // Enable JSX support
   },
-  "include": ["frontend/src", "webpack.config.js"]
+  "include": [
+    "frontend/src/**/*" // Include all files in the src folder
+  ],
+  "exclude": [
+    "node_modules" // Exclude the node_modules folder
+  ]
 }
