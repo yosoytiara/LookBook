@@ -2,7 +2,7 @@
 
 LookBook is a web application that allows users to save and visualize their wardrobe items in a database, and get outfit recommendations.
 
-### Add Items, update and delete if necessary 👚
+### Add Items, update, and delete if necessary 👚
 ![LookBook site](./frontend/assets/lookbook1.gif)
 ### Outfit Recommendations 
 ![LookBook site](./frontend/assets/lookbook2.gif)
@@ -16,7 +16,7 @@ LookBook is a web application that allows users to save and visualize their ward
 
 ## Installation
 
-1. Clone the repository:
+1. Fork/Clone the repository:
 
    ```bash
    git clone
@@ -41,3 +41,5 @@ LookBook is a web application that allows users to save and visualize their ward
    cd ..
    npm start
    ```
+   ## License
+This project is licensed under the terms of the MIT license.
