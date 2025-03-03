@@ -1,22 +1,27 @@
 # LookBook
 
-LookBook is a web application that allows users to save and visualize their wardrobe items in a database, and get outfit recommendations.
+LookBook is a web application designed to help users visualize their wardrobe and get creative with outfit ideas!👗👚👖
+
+It allows users to add, update, and delete wardrobe items while providing outfit recommendations based on their items available in their closet.
 
 ### Add Items, update and delete if necessary 👚
+
 ![LookBook site](./frontend/assets/lookbook1.gif)
-### Outfit Recommendations 
+
+### Outfit Recommendations
+
 ![LookBook site](./frontend/assets/lookbook2.gif)
 
 ## Technologies
 
-- React
-- TypeScript
-- Express
-- MongoDB
+- Frontend: React, TypeScript, CSS
+- Backend: Express
+- Database: MongoDB
+- Tools: Webpack
 
 ## Installation
 
-1. Clone the repository:
+1. Fork/Clone the repository:
 
    ```bash
    git clone
@@ -41,3 +46,15 @@ LookBook is a web application that allows users to save and visualize their ward
    cd ..
    npm start
    ```
+
+## Next Features
+
+Features I'm currently working on
+
+- User Accounts: Allow users to create accounts and save their wardrobe items and outfit preferences securely
+- Enhance the recommendation engine to suggest outfits based on additional user input
+- UI/Styling Improvements!
+
+## License
+
+This project is licensed under the terms of the MIT license.
