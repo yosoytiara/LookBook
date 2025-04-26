@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import InputBox from './components/InputBox';
 import Generator from './pages/Generator';
 import './App.css';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 const App: React.FC = () => {
   return (
@@ -12,6 +14,8 @@ const App: React.FC = () => {
         <Routes>
           <Route path='/' element={<InputBox />} />
           <Route path='/outfits' element={<Generator />} />
+          <Route path='/login' element={<SignUp />} />
+          <Route path='/signup' element={<Login />} />
         </Routes>
       </div>
     </Router>
