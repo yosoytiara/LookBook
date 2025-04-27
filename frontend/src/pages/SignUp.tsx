@@ -7,12 +7,13 @@ export default function SignUp() {
     <div>
       <h1>SignUp</h1>
       <form>
-        <input name='name' type='name'></input>
-        <input name='email' type='email'></input>
-        <input name='password' type='password'></input>
+        <input name='name' type='name' placeholder='Name'></input>
+        <input name='email' type='email' placeholder='Email'></input>
+        <input name='password' type='password' placeholder='Password'></input>
+        <button> Create Account</button>
       </form>
       <p>
-        <Link>Login In</Link>{' '}
+        <Link to='/signup'>Login In</Link>{' '}
       </p>
     </div>
   );

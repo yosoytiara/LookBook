@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LoginData } from '../types';
 
@@ -6,14 +6,14 @@ export default function Login() {
   return (
     <div>
       <h1>Login</h1>
-      <form>
-        <input name='email' type='email'></input>
-        <input name='password' type='password'></input>
+      <form className='Login' onSubmit={}>
+        <input name='email' type='email' placeholder='Email'></input>
+        <input name='password' type='password' placeholder='Password'></input>
+        <button>Login</button>
       </form>
       <p>
-        <Link to=>Create an Account</Link>{' '}
+        <Link to='/login'>Create an Account</Link>{' '}
       </p>
     </div>
   );
 }
-
