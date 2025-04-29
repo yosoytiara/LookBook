@@ -7,9 +7,9 @@ export default function SignUp() {
     <div>
       <h1>SignUp</h1>
       <form>
-        <input name='name' type='name' placeholder='Name'></input>
-        <input name='email' type='email' placeholder='Email'></input>
+        <input name='name' type='name' placeholder='UserName'></input>
         <input name='password' type='password' placeholder='Password'></input>
+        <input name='password' type='password' placeholder='Confirm Password'></input>
         <button> Create Account</button>
       </form>
       <p>
