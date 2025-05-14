@@ -1,4 +1,5 @@
 import Product from '../models/products.model.js';
+import jwt from 'jsonwebtoken';
 
 export const getProducts = async (req, res) => {
   try {
@@ -10,17 +11,45 @@ export const getProducts = async (req, res) => {
   }
 };
 
-
-export const createProduct = async (req, res) => {
-  const product = req.body;
-  if (!product.name || !product.category || !product.image) {
-    return res
-      .status(400)
-      .json({ success: false, message: 'Please provide all fields' });
-  }
-  const newProduct = new Product(product);
-
+export const getUserProducts = async (req, res) => {
   try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+
+    const products = await Product.find({ user: userId });
+    res.status(200).json({ success: true, data: products });
+  } catch (error) {
+    console.log('error in fetching products', error.message);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};
+export const createProduct = async (req, res) => {
+  try {
+    const product = req.body;
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decoded.id;
+
+    if (!product.name || !product.category || !product.image) {
+      return res
+        .status(400)
+        .json({ success: false, message: 'Please provide all fields' });
+    }
+
+    const newProduct = new Product({
+      name: product.name,
+      category: product.category,
+      image: product.image,
+      user: userId,
+    });
+
     await newProduct.save();
     res.status(201).json({ success: true, data: newProduct });
   } catch (error) {

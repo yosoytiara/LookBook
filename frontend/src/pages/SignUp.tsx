@@ -19,8 +19,9 @@ export default function SignUp() {
         body: JSON.stringify({ username, password }),
       });
       const data = await response.json();
-      if (response.ok) {
-        console.log('Account created', data);
+      if (response.ok && data.token) {
+        localStorage.setItem('token', data.token);
+        console.log('Signup successful');
         navigate('/');
       } else {
         console.log('Signup failed', data.error);
@@ -29,6 +30,7 @@ export default function SignUp() {
       console.log('Error during login');
     }
   };
+
   return (
     <div>
       <h1>SignUp</h1>

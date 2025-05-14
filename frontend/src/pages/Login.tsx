@@ -19,8 +19,9 @@ export default function Login() {
         body: JSON.stringify({ username, password }),
       });
       const data = await response.json();
-      if (response.ok) {
-        console.log('Login successful', data);
+      if (response.ok && data.token) {
+        localStorage.setItem('token', data.token);
+        console.log('Login successful');
         navigate('/');
       } else {
         console.log('Login failed', data.error);
@@ -29,6 +30,7 @@ export default function Login() {
       console.log('Error during login');
     }
   };
+
   return (
     <div>
       <h1>Login</h1>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { SubmittedItem } from '../types';
+import { SubmittedItem, Product } from '../types';
 
 export default function InputBox() {
+  const navigate = useNavigate();
+
   const [submittedItems, setSubmittedItems] = useState<SubmittedItem[]>([]);
 
   const [newProduct, setNewProduct] = useState({
@@ -25,10 +27,26 @@ export default function InputBox() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3030/products');
+        const token = localStorage.getItem('token');
+        const response = await axios.get(
+          'http://localhost:3030/products/mine',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const data = response.data;
-        console.log(response.data);
-        setSubmittedItems(Array.isArray(data.data) ? data.data : []);
+        // console.log(response.data);
+        // setSubmittedItems(Array.isArray(data.data) ? data.data : []);
+        if (Array.isArray(data.data)) {
+          data.data.forEach((item: Product) => {
+            console.log(item); // Log each item
+          });
+          setSubmittedItems(data.data);
+        } else {
+          console.error('Data fetched is not an array');
+        }
         setLoading(false);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -42,10 +60,13 @@ export default function InputBox() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
+      const token = localStorage.getItem('token');
+
       const response = await fetch('http://localhost:3030/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(newProduct),
       });
@@ -125,12 +146,20 @@ export default function InputBox() {
       return [];
     }
     return submittedItems.filter(
-      (submittedItem) => submittedItem.category === category
+      (submittedItem: Product) => submittedItem.category === category
     );
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
   };
 
   return (
     <div className='InputBox'>
+      <nav>
+        <button onClick={handleLogout}>Logout</button>
+      </nav>
       <form
         className='closetForm'
         onSubmit={isEditing ? handleUpdate : handleSubmit}
