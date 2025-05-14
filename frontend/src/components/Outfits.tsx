@@ -28,9 +28,16 @@ const Outfits: React.FC = () => {
   });
 
   useEffect(() => {
+           const token = localStorage.getItem('token');
+
     axios
       .get<{ success: boolean; data: ClosetItem[] }>(
-        'http://localhost:3030/products'
+        'http://localhost:3030/products/mine',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         console.log('API response:', response.data);

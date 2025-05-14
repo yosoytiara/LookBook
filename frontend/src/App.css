@@ -25,6 +25,11 @@
   text-align: center;
 }
 
+.Outfits h3 {
+  font-size: 35px;
+  font-weight: 200;
+}
+
 .InputBox {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -145,7 +150,8 @@ h3 {
 }
 
 /* Signup form */
-.Signup, .Login h4 {
+.Signup,
+.Login h4 {
   text-align: center;
   font-style: italic;
 }
