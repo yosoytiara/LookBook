@@ -126,27 +126,33 @@ h3 {
   font-family: 'Orbitron', sans-serif;
   font-size: 50px;
 }
-.loginForm,
-.signupForm {
+.loginForm {
+  width: 100%;
+  max-width: 400px;
   margin: 0 auto;
-  width: 400px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  border: #000000 1px;
 }
 .loginForm input {
+  display: block;
   width: 100%;
-  padding: 0.9 rem;
+  margin-bottom: 10px;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 .loginForm button {
-  margin: 1.5rem;
+  display: block;
+  padding: 12px;
+  margin-top: 15px;
+  width: 100%;
 }
 
 .Login p {
   text-align: center;
   text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Signup form */
@@ -155,17 +161,40 @@ h3 {
   text-align: center;
   font-style: italic;
 }
+.Signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .signupForm button {
-  padding: 20px 55px;
-  margin: 15px;
+  display: block;
+  padding: 12px;
+  margin-top: 15px;
+  width: 100%;
 }
 
 .signupForm input {
+  display: block;
   width: 100%;
-  margin: 5px;
+  margin-bottom: 10px;
   padding: 0.5rem;
+  box-sizing: border-box;
 }
 .Signup p {
   text-align: center;
   text-decoration: underline;
+}
+.signupForm {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* logout */
+
+.logout {
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }

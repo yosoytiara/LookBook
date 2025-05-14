@@ -22,7 +22,7 @@ export default function SignUp() {
       if (response.ok && data.token) {
         localStorage.setItem('token', data.token);
         console.log('Signup successful');
-        navigate('/closet');
+        navigate('/');
       } else {
         console.log('Signup failed', data.error);
       }

@@ -152,12 +152,12 @@ export default function InputBox() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/');
   };
 
   return (
     <div className='InputBox'>
-      <nav>
+      <nav className='logout'>
         <button onClick={handleLogout}>Logout</button>
       </nav>
       <form
