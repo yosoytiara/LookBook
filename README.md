@@ -51,7 +51,7 @@ It allows users to add, update, and delete wardrobe items while providing outfit
 
 Features I'm currently working on
 
-- User Accounts: Allow users to create accounts and save their wardrobe items and outfit preferences securely
+- ✅ User Accounts: Allow users to create accounts and save their wardrobe items and outfit preferences securely
 - Enhance the recommendation engine to suggest outfits based on additional user input
 - UI/Styling Improvements!
 
