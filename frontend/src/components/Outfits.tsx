@@ -76,7 +76,7 @@ const Outfits: React.FC = () => {
     <div className='Outfits'>
       <h3>Outfit Recommendation based on your closet:</h3>
       <button>
-        <Link to='/'> Back to Home</Link>
+        <Link to='/closet'> Back to Home</Link>
       </button>
       <button type='submit' id='outfitSubmit' onClick={generateOutfit}>
         Generate a Outfit

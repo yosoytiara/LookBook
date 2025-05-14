@@ -22,7 +22,7 @@ export default function Login() {
       if (response.ok && data.token) {
         localStorage.setItem('token', data.token);
         console.log('Login successful');
-        navigate('/');
+        navigate('/closet');
       } else {
         console.log('Login failed', data.error);
       }
@@ -32,9 +32,10 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form className='Login' onSubmit={handleSubmit}>
+    <div className='Login'>
+      <h3>Login</h3>
+      <h4>Enter your virtual closet</h4>
+      <form className='loginForm' onSubmit={handleSubmit}>
         <input
           name='username'
           type='text'
@@ -49,7 +50,9 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button>Login</button>
+        <div>
+          <button>Login</button>
+        </div>
       </form>
       <p>
         <Link to='/signup'>Create an Account</Link>{' '}

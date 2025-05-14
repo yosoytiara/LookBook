@@ -22,7 +22,7 @@ export default function SignUp() {
       if (response.ok && data.token) {
         localStorage.setItem('token', data.token);
         console.log('Signup successful');
-        navigate('/');
+        navigate('/closet');
       } else {
         console.log('Signup failed', data.error);
       }
@@ -32,9 +32,10 @@ export default function SignUp() {
   };
 
   return (
-    <div>
-      <h1>SignUp</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='Signup'>
+      <h3>SignUp</h3>
+      <h4>Create your virtual closet</h4>
+      <form onSubmit={handleSubmit} className='signupForm'>
         <input
           name='username'
           type='text'
@@ -59,7 +60,7 @@ export default function SignUp() {
         <button> Create Account</button>
       </form>
       <p>
-        <Link to='/login'>Login In</Link>{' '}
+        <Link to='/'> Login In</Link>{' '}
       </p>
     </div>
   );

@@ -10,16 +10,17 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <Link to='/signup'> Sign Up </Link>
           <Link to='/login'> Login </Link>
-        </nav>
+        </nav> */}
         <h1>LookBook</h1>
         <Routes>
-          <Route path='/' element={<InputBox />} />
+          <Route path='/' element={<Login />} />
+          <Route path='/closet' element={<InputBox />} />
           <Route path='/outfits' element={<Generator />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route path='/login' element={<Login />} />
+     
         </Routes>
       </div>
     </Router>

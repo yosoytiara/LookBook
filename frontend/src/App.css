@@ -100,6 +100,7 @@ button:active {
 a {
   text-decoration: none;
   background-color: transparent;
+  color: #000000;
 }
 a:visited {
   color: black;
@@ -112,4 +113,53 @@ a:hover {
 a:active {
   color: rgb(9, 8, 8);
   text-decoration: none;
+}
+
+/* login form */
+h3 {
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 50px;
+}
+.loginForm,
+.signupForm {
+  margin: 0 auto;
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: #000000 1px;
+}
+.loginForm input {
+  width: 100%;
+  padding: 0.9 rem;
+}
+
+.loginForm button {
+  margin: 1.5rem;
+}
+
+.Login p {
+  text-align: center;
+  text-decoration: underline;
+}
+
+/* Signup form */
+.Signup, .Login h4 {
+  text-align: center;
+  font-style: italic;
+}
+.signupForm button {
+  padding: 20px 55px;
+  margin: 15px;
+}
+
+.signupForm input {
+  width: 100%;
+  margin: 5px;
+  padding: 0.5rem;
+}
+.Signup p {
+  text-align: center;
+  text-decoration: underline;
 }
