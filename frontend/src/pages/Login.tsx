@@ -40,7 +40,7 @@ export default function Login() {
           name='username'
           type='text'
           placeholder='Username'
-          value={username}
+          autoComplete='off'
           onChange={(e) => setUsername(e.target.value)}
         ></input>
         <input

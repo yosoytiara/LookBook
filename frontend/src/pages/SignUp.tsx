@@ -39,7 +39,7 @@ export default function SignUp() {
         <input
           name='username'
           type='text'
-          placeholder='UserName'
+          placeholder='Username'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         ></input>
