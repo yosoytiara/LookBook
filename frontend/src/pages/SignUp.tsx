@@ -6,10 +6,13 @@ export default function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  
 
   const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setError('');
     try {
       const response = await fetch('http://localhost:3030/user/signup', {
         method: 'POST',
@@ -25,6 +28,7 @@ export default function SignUp() {
         navigate('/');
       } else {
         console.log('Signup failed', data.error);
+        setError(`${data.error}`);
       }
     } catch (error) {
       console.log('Error during login');
@@ -59,6 +63,10 @@ export default function SignUp() {
         ></input>
         <button> Create Account</button>
       </form>
+
+      {error && (
+        <p id='error'> {error}</p>
+      )}
       <p>
         <Link to='/'> Login In</Link>{' '}
       </p>

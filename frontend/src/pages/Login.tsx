@@ -5,11 +5,13 @@ import { LoginData } from '../types';
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setError('');
     try {
       const response = await fetch('http://localhost:3030/user/login', {
         method: 'POST',
@@ -25,8 +27,10 @@ export default function Login() {
         navigate('/closet');
       } else {
         console.log('Login failed', data.error);
+        setError('Invalid username or password.');
       }
     } catch (error) {
+      setError('Invalid username or password.');
       console.log('Error during login');
     }
   };
@@ -54,6 +58,9 @@ export default function Login() {
           <button>Login</button>
         </div>
       </form>
+
+      {error && <p id='error'>Invalid username or password. Please try again </p>}
+
       <p>
         <Link to='/signup'>Create an Account</Link>{' '}
       </p>
