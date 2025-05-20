@@ -6,7 +6,7 @@ It allows users to add, update, and delete wardrobe items while providing outfit
 
 ### Login or Create an Account 
 
-![LookBook site](./frontend/assets/Login-signup.gif)
+![LookBook site](./frontend/assets/Login-Signup.gif)
 
 ### Add Items, update and delete if necessary 👚
 
