@@ -4,6 +4,10 @@ LookBook is a web application designed to help users visualize their wardrobe an
 
 It allows users to add, update, and delete wardrobe items while providing outfit recommendations based on their items available in their closet.
 
+### Login or Create an Account 
+
+![LookBook site](./frontend/assets/Login-signup.gif)
+
 ### Add Items, update and delete if necessary 👚
 
 ![LookBook site](./frontend/assets/lookbook1.gif)
