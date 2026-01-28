@@ -6,7 +6,7 @@ interface ClosetItem {
   id: string;
   name: string;
   image: string;
-  category: 'tops' | 'bottoms' | 'shoes' | 'outerwear';
+  category: 'tops' | 'bottoms' | 'shoes' | 'outerwear' | 'accessories';
 }
 
 interface Outfit {
@@ -14,6 +14,7 @@ interface Outfit {
   bottom: ClosetItem | null;
   shoes: ClosetItem | null;
   outerwear: ClosetItem | null;
+  accessories: ClosetItem | null;
 }
 
 type OutfitKey = keyof Outfit;
@@ -25,10 +26,11 @@ const Outfits: React.FC = () => {
     bottom: null,
     shoes: null,
     outerwear: null,
+    accessories: null,
   });
 
   useEffect(() => {
-           const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
     axios
       .get<{ success: boolean; data: ClosetItem[] }>(
@@ -37,7 +39,7 @@ const Outfits: React.FC = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .then((response) => {
         console.log('API response:', response.data);
@@ -52,6 +54,7 @@ const Outfits: React.FC = () => {
       bottom: [],
       shoes: [],
       outerwear: [],
+      accessories: []
     };
 
     closet.forEach((item) => {
@@ -63,6 +66,8 @@ const Outfits: React.FC = () => {
         categories.shoes.push(item);
       } else if (item.category === 'outerwear') {
         categories.outerwear.push(item);
+      } else if (item.category === 'accessories') {
+        categories.accessories.push(item);
       }
     });
 
@@ -77,6 +82,7 @@ const Outfits: React.FC = () => {
       bottom: getRandomItem(categories.bottom),
       shoes: getRandomItem(categories.shoes),
       outerwear: getRandomItem(categories.outerwear),
+      accessories: getRandomItem(categories.accessories),
     });
   };
   return (
@@ -103,7 +109,7 @@ const Outfits: React.FC = () => {
               </li>
               <li>{item.name}</li>
             </ul>
-          ) : null
+          ) : null,
         )}
       </div>
     </div>

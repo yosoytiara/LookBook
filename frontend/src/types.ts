@@ -1,6 +1,6 @@
 export interface ClothingItem {
   name: string;
-  category: 'top' | 'bottom' | 'shoes' | 'outerwear';
+  category: 'top' | 'bottom' | 'shoes' | 'outerwear' | 'accessories';
 
   image: '';
 }

@@ -34,7 +34,7 @@ export default function InputBox() {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         const data = response.data;
         // console.log(response.data);
@@ -97,7 +97,7 @@ export default function InputBox() {
       await axios.delete(`http://localhost:3030/products/${id}`);
 
       setSubmittedItems((prevItems) =>
-        prevItems.filter((item) => item._id !== id)
+        prevItems.filter((item) => item._id !== id),
       );
     } catch (error: any) {
       console.error('Error deleting product:', error.message);
@@ -110,7 +110,7 @@ export default function InputBox() {
     try {
       const response = await axios.put(
         `http://localhost:3030/products/${updatedProduct._id}`,
-        updatedProduct
+        updatedProduct,
       );
 
       console.log('Product updated successfully:', response.data);
@@ -118,8 +118,8 @@ export default function InputBox() {
         prevItems.map((item) =>
           item._id === updatedProduct._id
             ? { ...item, ...updatedProduct }
-            : item
-        )
+            : item,
+        ),
       );
       setIsEditing(false); // Reset editing mode after successful update
       setUpdatedProduct({
@@ -146,7 +146,7 @@ export default function InputBox() {
       return [];
     }
     return submittedItems.filter(
-      (submittedItem: Product) => submittedItem.category === category
+      (submittedItem: Product) => submittedItem.category === category,
     );
   };
 
@@ -203,6 +203,7 @@ export default function InputBox() {
               <option value='bottoms'>Bottoms</option>
               <option value='shoes'>Shoes</option>
               <option value='outerwear'>Outerwear</option>
+              <option value='accessories'>Accessories</option>
             </select>
           </label>
         </div>
@@ -241,34 +242,40 @@ export default function InputBox() {
         <div>
           <h2 id='closet'> Closet:</h2>
           {/* //Display items below */}
-          {['tops', 'bottoms', 'shoes', 'outerwear'].map((category) => (
-            <div key={category}>
-              <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
-              <div className='closet'>
-                {filterItemsByCategory(category).map((submittedItem, index) => (
-                  <ul key={index}>
-                    <li>
-                      <img
-                        src={submittedItem.image}
-                        alt={submittedItem.name}
-                        style={{
-                          height: 250,
-                        }}
-                      />
-                      <p>{submittedItem.name}</p>
+          {['tops', 'bottoms', 'shoes', 'outerwear', 'accessories'].map(
+            (category) => (
+              <div key={category}>
+                <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+                <div className='closet'>
+                  {filterItemsByCategory(category).map(
+                    (submittedItem, index) => (
+                      <ul key={index}>
+                        <li>
+                          <img
+                            src={submittedItem.image}
+                            alt={submittedItem.name}
+                            style={{
+                              height: 250,
+                            }}
+                          />
+                          <p>{submittedItem.name}</p>
 
-                      <button onClick={() => handleEdit(submittedItem)}>
-                        Edit
-                      </button>
-                      <button onClick={() => handleDelete(submittedItem._id)}>
-                        Delete
-                      </button>
-                    </li>
-                  </ul>
-                ))}
+                          <button onClick={() => handleEdit(submittedItem)}>
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(submittedItem._id)}
+                          >
+                            Delete
+                          </button>
+                        </li>
+                      </ul>
+                    ),
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ),
+          )}
         </div>
       )}
     </div>
