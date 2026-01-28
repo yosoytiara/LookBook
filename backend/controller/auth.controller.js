@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-
 dotenv.config();
 
 export const Signup = async (req, res) => {
@@ -16,8 +15,6 @@ export const Signup = async (req, res) => {
     });
   }
   try {
-    //hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
     //check if username exists
     const exist = await User.findOne({ username });
     if (exist) {
@@ -25,6 +22,8 @@ export const Signup = async (req, res) => {
         error: 'Username is taken',
       });
     }
+    //hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     //create user
     const user = await User.create({
@@ -32,11 +31,23 @@ export const Signup = async (req, res) => {
       password: hashedPassword,
     });
 
-    return res.status(201).json({ message: 'User created' });
+    const token = jwt.sign(
+      { id: user._id, username: user.username },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' },
+    );
+
+    return res.status(201).json({ token });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: 'Server Error' });
+    res.status(500).json({ message: 'Server Error' });
   }
+
+  //   return res.status(201).json({ message: 'User created' });
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).json({ success: false, message: 'Server Error' });
+  //
 };
 
 export const Login = async (req, res) => {
@@ -70,7 +81,7 @@ export const Login = async (req, res) => {
     const token = jwt.sign(
       { id: user._id, username: user.username },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: '1h' },
     );
     res.json({ token });
   } catch (error) {
