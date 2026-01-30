@@ -87,7 +87,7 @@ const Outfits: React.FC = () => {
   };
   return (
     <div className='Outfits'>
-      <h3>Outfit Recommendation based on your closet:</h3>
+      <h4>Outfit Recommendation based on your closet:</h4>
       <button>
         <Link to='/closet'> Back to Home</Link>
       </button>
@@ -112,6 +112,7 @@ const Outfits: React.FC = () => {
           ) : null,
         )}
       </div>
+      <button>Save Outfit</button>
     </div>
   );
 };

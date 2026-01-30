@@ -7,7 +7,6 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  
 
   const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent) => {
@@ -37,7 +36,6 @@ export default function SignUp() {
 
   return (
     <div className='Signup'>
-      <h3>SignUp</h3>
       <h4>Create your virtual closet</h4>
       <form onSubmit={handleSubmit} className='signupForm'>
         <input
@@ -64,9 +62,7 @@ export default function SignUp() {
         <button> Create Account</button>
       </form>
 
-      {error && (
-        <p id='error'> {error}</p>
-      )}
+      {error && <p id='error'> {error}</p>}
       <p>
         <Link to='/'> Login In</Link>{' '}
       </p>

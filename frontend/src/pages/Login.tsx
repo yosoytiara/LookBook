@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div className='Login'>
-      <h3>Login</h3>
+
       <h4>Enter your virtual closet</h4>
       <form className='loginForm' onSubmit={handleSubmit}>
         <input
