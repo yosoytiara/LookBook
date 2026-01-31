@@ -237,7 +237,7 @@ export default function InputBox() {
         </div>
       </form>
       {loading ? (
-        <p>Loading your closet items...</p>
+        <p>Loading your closet...</p>
       ) : (
         <div>
           <h2 id='closet'> Closet:</h2>
