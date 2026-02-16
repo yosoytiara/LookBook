@@ -4,6 +4,8 @@ import axios from 'axios';
 import { SubmittedItem, Product } from '../types';
 
 export default function InputBox() {
+  type Category = 'tops' | 'bottoms' | 'shoes' | 'outerwear' | 'accessories';
+
   const navigate = useNavigate();
 
   const [submittedItems, setSubmittedItems] = useState<SubmittedItem[]>([]);
@@ -23,6 +25,14 @@ export default function InputBox() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const [visibleIndex, setVisibleIndex] = useState<Record<Category, number>>({
+    tops: 0,
+    bottoms: 0,
+    shoes: 0,
+    outerwear: 0,
+    accessories: 0,
+  });
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -155,6 +165,23 @@ export default function InputBox() {
     navigate('/');
   };
 
+  const handlePrev = (category: Category) => {
+    setVisibleIndex((prev) => ({
+      ...prev,
+      [category]: Math.max(prev[category] - 2, 0),
+    }));
+  };
+
+  const handleNext = (category: Category, length: number) => {
+    setVisibleIndex((prev) => ({
+      ...prev,
+      [category]: Math.min(
+        prev[category] + 2,
+        length - 2 >= 0 ? length - 2 : 0,
+      ),
+    }));
+  };
+
   return (
     <div className='InputBox'>
       <div className='closetForm'>
@@ -258,24 +285,37 @@ export default function InputBox() {
         <div className='mainCloset'>
           <h2 id='closet'> Closet:</h2>
           {/* //Display items below */}
-          {['tops', 'bottoms', 'shoes', 'outerwear', 'accessories'].map(
-            (category) => (
-              <div key={category}>
-                <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+          {(
+            [
+              'tops',
+              'bottoms',
+              'shoes',
+              'outerwear',
+              'accessories',
+            ] as Category[]
+          ).map((category) => (
+            <div key={category}>
+              <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+              <div className='closet-navigation'>
+                <button
+                  onClick={() => handlePrev(category)}
+                  disabled={visibleIndex[category] === 0}
+                >
+                  ◀
+                </button>
+
                 <div className='closet'>
-                  {filterItemsByCategory(category).map(
-                    (submittedItem, index) => (
+                  {filterItemsByCategory(category)
+                    .slice(visibleIndex[category], visibleIndex[category] + 2)
+                    .map((submittedItem, index) => (
                       <ul key={index}>
                         <li>
                           <img
                             src={submittedItem.image}
                             alt={submittedItem.name}
-                            style={{
-                              height: 250,
-                            }}
+                            style={{ height: 250 }}
                           />
                           <p>{submittedItem.name}</p>
-
                           <button onClick={() => handleEdit(submittedItem)}>
                             Edit
                           </button>
@@ -286,12 +326,23 @@ export default function InputBox() {
                           </button>
                         </li>
                       </ul>
-                    ),
-                  )}
+                    ))}
                 </div>
+
+                <button
+                  onClick={() =>
+                    handleNext(category, filterItemsByCategory(category).length)
+                  }
+                  disabled={
+                    visibleIndex[category] + 2 >=
+                    filterItemsByCategory(category).length
+                  }
+                >
+                  ▶
+                </button>
               </div>
-            ),
-          )}
+            </div>
+          ))}
         </div>
       )}
     </div>
