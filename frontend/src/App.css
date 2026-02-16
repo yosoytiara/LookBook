@@ -1,8 +1,8 @@
 * {
   background-color: rgb(255, 255, 255);
   /* font-family: Arial, Helvetica, sans-serif; */
-    font-family: 'Syncopate', sans-serif;
-    font-weight: 400;
+  font-family: 'Syncopate', sans-serif;
+  font-weight: 400;
 }
 
 /* Closet Form */
@@ -34,8 +34,20 @@
 
 .InputBox {
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.closetForm {
+  flex: 1;
+  padding: 10px;
 }
 
+.mainCloset {
+  flex: 1; 
+  padding: 10px;
+  border: 1px solid black;
+}
 .closet {
   border: 0.5px solid black;
 }
@@ -211,5 +223,4 @@ h3 {
   position: fixed;
   top: 20px;
   right: 20px;
-
 }

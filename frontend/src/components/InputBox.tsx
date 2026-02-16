@@ -157,89 +157,103 @@ export default function InputBox() {
 
   return (
     <div className='InputBox'>
-      <nav className='logout'>
-        <button onClick={handleLogout}>Logout</button>
-      </nav>
-      <form
-        className='closetForm'
-        onSubmit={isEditing ? handleUpdate : handleSubmit}
-      >
-        <h2> Enter your wardrobe</h2>
-        <div>
-          <label>
-            Item name:
-            <input
-              name='item'
-              placeholder='ex:Zara fur coat'
-              value={isEditing ? updatedProduct.name : newProduct.name}
-              onChange={(e) => {
-                isEditing
-                  ? setUpdatedProduct({
-                      ...updatedProduct,
-                      name: e.target.value,
-                    })
-                  : setNewProduct({ ...newProduct, name: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Category:
-            <select
-              id='category'
-              name='category'
-              value={isEditing ? updatedProduct.category : newProduct.category}
-              onChange={(e) => {
-                isEditing
-                  ? setUpdatedProduct({
-                      ...updatedProduct,
-                      category: e.target.value,
-                    })
-                  : setNewProduct({ ...newProduct, category: e.target.value });
-              }}
-            >
-              <option value='tops'>Tops</option>
-              <option value='bottoms'>Bottoms</option>
-              <option value='shoes'>Shoes</option>
-              <option value='outerwear'>Outerwear</option>
-              <option value='accessories'>Accessories</option>
-            </select>
-          </label>
-        </div>
-        <div>
+      <div className='closetForm'>
+        <nav className='logout'>
+          <button onClick={handleLogout}>Logout</button>
+        </nav>
+        <form
+          className='closetForm'
+          onSubmit={isEditing ? handleUpdate : handleSubmit}
+        >
+          <h2> Enter your wardrobe</h2>
           <div>
             <label>
-              Image:
+              Item name:
               <input
-                name='image'
-                placeholder='enter image url'
-                id='image'
-                value={isEditing ? updatedProduct.image : newProduct.image}
+                name='item'
+                placeholder='ex:Zara fur coat'
+                value={isEditing ? updatedProduct.name : newProduct.name}
+                autoComplete='off'
                 onChange={(e) => {
                   isEditing
                     ? setUpdatedProduct({
                         ...updatedProduct,
-                        image: e.target.value,
+                        name: e.target.value,
                       })
-                    : setNewProduct({ ...newProduct, image: e.target.value });
+                    : setNewProduct({ ...newProduct, name: e.target.value });
                 }}
               />
             </label>
           </div>
-        </div>
-        <button type='submit'>{isEditing ? 'Update item' : 'Add item'}</button>
-        <button id='closetButton'>
-          <a href='#closet'> View Closet </a>
-        </button>
-        <div>
-          <Link to='/outfits'> Generate a Outfit</Link>
-        </div>
-      </form>
+
+          <div>
+            <label>
+              Category:
+              <select
+                id='category'
+                name='category'
+                value={
+                  isEditing ? updatedProduct.category : newProduct.category
+                }
+                onChange={(e) => {
+                  isEditing
+                    ? setUpdatedProduct({
+                        ...updatedProduct,
+                        category: e.target.value,
+                      })
+                    : setNewProduct({
+                        ...newProduct,
+                        category: e.target.value,
+                      });
+                }}
+              >
+                <option value='' selected disabled hidden>
+                  Choose an option
+                </option>
+                <option value='tops'>Tops</option>
+                <option value='bottoms'>Bottoms</option>
+                <option value='shoes'>Shoes</option>
+                <option value='outerwear'>Outerwear</option>
+                <option value='accessories'>Accessories</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <div>
+              <label>
+                Image:
+                <input
+                  name='image'
+                  placeholder='enter image url'
+                  id='image'
+                  value={isEditing ? updatedProduct.image : newProduct.image}
+                  onChange={(e) => {
+                    isEditing
+                      ? setUpdatedProduct({
+                          ...updatedProduct,
+                          image: e.target.value,
+                        })
+                      : setNewProduct({ ...newProduct, image: e.target.value });
+                  }}
+                />
+              </label>
+            </div>
+          </div>
+          <button type='submit'>
+            {isEditing ? 'Update item' : 'Add item'}
+          </button>
+          <button id='closetButton'>
+            <a href='#closet'> View Closet </a>
+          </button>
+          <div>
+            <Link to='/outfits'> Generate a Outfit</Link>
+          </div>
+        </form>
+      </div>
       {loading ? (
         <p>Loading your closet...</p>
       ) : (
-        <div>
+        <div className='mainCloset'>
           <h2 id='closet'> Closet:</h2>
           {/* //Display items below */}
           {['tops', 'bottoms', 'shoes', 'outerwear', 'accessories'].map(
