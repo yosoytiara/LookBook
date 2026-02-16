@@ -44,7 +44,7 @@
 }
 
 .mainCloset {
-  flex: 1; 
+  flex: 1;
   padding: 10px;
   border: 1px solid black;
 }
@@ -143,6 +143,9 @@ a:active {
   text-decoration: none;
 }
 
+#outfitButton {
+  text-align: center;
+}
 /* login form */
 h3 {
   text-align: center;

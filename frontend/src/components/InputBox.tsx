@@ -246,7 +246,9 @@ export default function InputBox() {
             <a href='#closet'> View Closet </a>
           </button>
           <div>
-            <Link to='/outfits'> Generate a Outfit</Link>
+            <button id='outfitButton'>
+              <Link to='/outfits'> Generate a Outfit</Link>
+            </button>
           </div>
         </form>
       </div>
