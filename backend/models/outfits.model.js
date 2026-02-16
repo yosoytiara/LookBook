@@ -1,5 +1,3 @@
-import { truncate } from "fs";
-import { ConnectionCheckOutFailedEvent } from "mongodb";
 import mongoose from "mongoose";
 
 const outfitSchema = new mongoose.Schema({

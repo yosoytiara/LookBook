@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import productRoutes from './routes/product.route.js';
 import userRoutes from './routes/auth.route.js';
+import outfitRoutes from './routes/outfits.route.js';
+
 import cors from 'cors';
 
 const app = express();
@@ -17,7 +19,10 @@ app.use(express.json());
 
 app.use('/products', productRoutes);
 
+app.use('/outfits', outfitRoutes);
+
 app.use('/user', userRoutes);
+
 
 app.listen(PORT, () => {
   connectDB();

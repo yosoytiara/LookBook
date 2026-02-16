@@ -19,15 +19,13 @@ interface Outfit {
 
 type OutfitKey = keyof Outfit;
 
-const Outfits: React.FC = () => {
+interface OutfitsProps {
+  selectedItem: Outfit;
+  setSelectedItem: React.Dispatch<React.SetStateAction<Outfit>>;
+}
+
+const Outfits = ({ selectedItem, setSelectedItem }: OutfitsProps) => {
   const [closet, setCloset] = useState<ClosetItem[]>([]);
-  const [selectedItem, setSelectedItem] = useState<Outfit>({
-    top: null,
-    bottom: null,
-    shoes: null,
-    outerwear: null,
-    accessories: null,
-  });
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -54,7 +52,7 @@ const Outfits: React.FC = () => {
       bottom: [],
       shoes: [],
       outerwear: [],
-      accessories: []
+      accessories: [],
     };
 
     closet.forEach((item) => {
@@ -91,7 +89,7 @@ const Outfits: React.FC = () => {
       <button>
         <Link to='/closet'> Back to Home</Link>
       </button>
-      <button type='submit' id='outfitSubmit' onClick={generateOutfit}>
+      <button type='button' id='outfitSubmit' onClick={generateOutfit}>
         Generate a Outfit
       </button>
       <div className='closet'>
@@ -112,7 +110,6 @@ const Outfits: React.FC = () => {
           ) : null,
         )}
       </div>
-      <button>Save Outfit</button>
     </div>
   );
 };
