@@ -297,14 +297,14 @@ export default function InputBox() {
             <div key={category}>
               <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
               <div className='closet-navigation'>
-                <button
-                  onClick={() => handlePrev(category)}
-                  disabled={visibleIndex[category] === 0}
-                >
-                  ◀
-                </button>
-
                 <div className='closet'>
+                  <button
+                    className='arrowButton'
+                    onClick={() => handlePrev(category)}
+                    disabled={visibleIndex[category] === 0}
+                  >
+                    ◀
+                  </button>
                   {filterItemsByCategory(category)
                     .slice(visibleIndex[category], visibleIndex[category] + 2)
                     .map((submittedItem, index) => (
@@ -316,6 +316,7 @@ export default function InputBox() {
                             style={{ height: 250 }}
                           />
                           <p>{submittedItem.name}</p>
+
                           <button onClick={() => handleEdit(submittedItem)}>
                             Edit
                           </button>
@@ -327,19 +328,22 @@ export default function InputBox() {
                         </li>
                       </ul>
                     ))}
+                  <button
+                    className='arrowButton'
+                    onClick={() =>
+                      handleNext(
+                        category,
+                        filterItemsByCategory(category).length,
+                      )
+                    }
+                    disabled={
+                      visibleIndex[category] + 2 >=
+                      filterItemsByCategory(category).length
+                    }
+                  >
+                    ▶
+                  </button>
                 </div>
-
-                <button
-                  onClick={() =>
-                    handleNext(category, filterItemsByCategory(category).length)
-                  }
-                  disabled={
-                    visibleIndex[category] + 2 >=
-                    filterItemsByCategory(category).length
-                  }
-                >
-                  ▶
-                </button>
               </div>
             </div>
           ))}

@@ -87,7 +87,7 @@ export default function Generator() {
 
       <button onClick={saveOutfit}>Save Outfit</button>
 
-      <h3>Saved Outfits:</h3>
+      <h5>Saved Outfits:</h5>
       {savedOutfits.length === 0 && <p>No saved outfits yet.</p>}
 
       <div className='saved-outfits'>
