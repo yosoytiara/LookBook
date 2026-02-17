@@ -15,7 +15,7 @@ It allows users to add, update, and delete wardrobe items while providing outfit
 
 ### Add Items, update and delete if necessary 👚
 
-![LookBook site](./frontend/assets/lookbook1.gif)
+![LookBook site](./frontend/assets/lookbook2.0.png)
 
 ### Outfit Recommendations
 
