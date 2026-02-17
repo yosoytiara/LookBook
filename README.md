@@ -4,6 +4,11 @@ LookBook is a web application designed to help users visualize their wardrobe an
 
 It allows users to add, update, and delete wardrobe items while providing outfit recommendations based on their items available in their closet.
 
+## New Features - 2026 Updates
+
+- User Accounts: Allow users to create accounts and save their wardrobe items and outfit preferences 
+- Saving outfit recommendations feature
+- UI/Styling Improvements!
 ### Login or Create an Account 
 
 ![LookBook site](./frontend/assets/Login-Signup.gif)
@@ -51,13 +56,6 @@ It allows users to add, update, and delete wardrobe items while providing outfit
    npm start
    ```
 
-## Next Features
-
-Features I'm currently working on
-
-- ✅ User Accounts: Allow users to create accounts and save their wardrobe items and outfit preferences securely
-- Enhance the recommendation engine to suggest outfits based on additional user input
-- UI/Styling Improvements!
 
 ## License
 
